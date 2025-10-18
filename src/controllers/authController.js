@@ -135,7 +135,7 @@ const register = asyncHandler(async (req, res) => {
       childrenIds: user.childrenIds,
     },
   });
-};
+});
 
 // @desc    Refresh token
 // @route   POST /api/v1/auth/refresh
