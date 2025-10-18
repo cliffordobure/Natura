@@ -10,16 +10,21 @@ const crypto = require('crypto');
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  console.log('Login attempt:', { email, password: password ? '[PROVIDED]' : '[MISSING]' });
+
   // Validate input
   if (!email || !password) {
+    console.log('Missing email or password');
     res.status(400);
     throw new Error('Please provide email and password');
   }
 
   // Check if user exists
   const user = await User.findOne({ email }).select('+password');
+  console.log('User found:', user ? 'YES' : 'NO');
 
   if (!user) {
+    console.log('User not found for email:', email);
     res.status(401);
     throw new Error('Invalid credentials');
   }
