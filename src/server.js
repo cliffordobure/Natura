@@ -11,6 +11,10 @@ const { errorHandler, notFound } = require('./middleware/errorMiddleware');
 // Initialize Express app
 const app = express();
 
+// Trust proxy - IMPORTANT for deployment on Render, Heroku, etc.
+// This allows Express to trust the X-Forwarded-* headers
+app.set('trust proxy', 1);
+
 // Connect to database
 connectDB();
 
